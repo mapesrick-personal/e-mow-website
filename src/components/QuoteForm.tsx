@@ -129,20 +129,28 @@ export function QuoteForm() {
               />
             </div>
 
-            <div>
-              <label htmlFor="lawnSize" className="block text-gray-300 mb-2 font-semibold">
-                Lawn Size (sq ft)
-              </label>
-              <input
-                type="text"
-                id="lawnSize"
-                name="lawnSize"
-                value={formData.lawnSize}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
-                placeholder="Approx. size"
-              />
-            </div>
+<div>
+  <label htmlFor="lawnSize" className="block text-gray-300 mb-2 font-semibold">
+    Lawn Size (acres)
+  </label>
+  <select
+    id="lawnSize"
+    name="lawnSize"
+    value={formData.lawnSize}
+    onChange={handleChange}
+    className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
+  >
+    <option value="">Select lawn size</option>
+    <option value="Less than 1/4 acre">Less than 1/4 acre</option>
+    <option value="1/4 acre">1/4 acre</option>
+    <option value="1/3 acre">1/3 acre</option>
+    <option value="1/2 acre">1/2 acre</option>
+    <option value="2/3 acre">2/3 acre</option>
+    <option value="3/4 acre">3/4 acre</option>
+    <option value="1 acre">1 acre</option>
+    <option value="More than 1 acre (note in comments)">More than 1 acre (note in comments)</option>
+  </select>
+</div>
           </div>
 
           <div className="mb-6">
