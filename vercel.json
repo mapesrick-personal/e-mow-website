@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/legal", "destination": "/" },
+    { "source": "/legal/", "destination": "/" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
