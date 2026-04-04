@@ -3,16 +3,17 @@ import { Send, CheckCircle } from 'lucide-react';
 
 export function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    service: 'mowing',
-    frequency: 'weekly',
-    lawnSize: '',
-    message: ''
-  });
+const [formData, setFormData] = useState({
+  name: '',
+  email: '',
+  phone: '',
+  address: '',
+  service: 'mowing',
+  frequency: 'weekly',
+  lawnSize: '',
+  message: '',
+  smsConsent: false
+});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +39,7 @@ export function QuoteForm() {
         frequency: 'weekly',
         lawnSize: '',
         message: '',
+        smsConsent: false,
       });
 
       setTimeout(() => setSubmitted(false), 5000);
@@ -48,13 +50,15 @@ export function QuoteForm() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+) => {
+  const { name, value, type } = e.target as HTMLInputElement;
+
+  setFormData({
+    ...formData,
+    [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+  });
+};
 
   return (
     <section id="quote" className="relative py-24 bg-gradient-to-b from-black via-zinc-950 to-black">
@@ -220,8 +224,28 @@ export function QuoteForm() {
               placeholder="Any specific requirements or questions?"
             />
           </div>
-
+<div className="mb-6">
+  <label className="flex items-start gap-3 text-gray-300">
+    <input
+      type="checkbox"
+      name="smsConsent"
+      checked={formData.smsConsent}
+      onChange={handleChange}
+      required
+      className="mt-1 h-4 w-4 accent-purple-600"
+    />
+    <span className="text-sm leading-relaxed">
+      I agree to receive SMS messages from E-Mow Lawncare related to my quote request.
+      Message frequency varies. Message and data rates may apply. Reply STOP to opt out.
+      Reply HELP for help. See our{' '}
+      <a href="/legal" className="text-green-400 hover:text-green-300 underline">
+        Privacy Policy and Terms
+      </a>.
+    </span>
+  </label>
+</div>
           <button
+          
             type="submit"
             className="w-full px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold rounded-sm transition-all hover:shadow-xl hover:shadow-purple-500/50 flex items-center justify-center gap-2"
           >

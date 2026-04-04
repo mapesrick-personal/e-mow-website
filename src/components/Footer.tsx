@@ -112,9 +112,9 @@ export function Footer() {
               &copy; {new Date().getFullYear()} E-MOW. All rights reserved. Powered by electric dreams.
             </div>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-purple-400 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-purple-400 transition-colors">Terms of Service</a>
-            </div>
+  <a href="/legal" className="hover:text-purple-400 transition-colors">Privacy Policy</a>
+  <a href="/legal" className="hover:text-purple-400 transition-colors">Terms of Service</a>
+</div>
           </div>
         </div>
       </div>
