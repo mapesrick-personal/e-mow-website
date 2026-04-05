@@ -36,31 +36,30 @@ export function Hero() {
           </h1>
           <Leaf className="w-16 h-16 text-green-500 fill-green-500" />
         </div>
-        
+
         {/* E-MOW Crew Characters */}
         <div className="flex justify-center mb-8">
           <div className="w-64 md:w-80 h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-300">
             <EmowCrewCharacters />
           </div>
         </div>
-        
+
         <p className="text-xl md:text-3xl text-gray-300 mb-4 font-light italic">
-          Darkness meets <span className="text-green-400">green</span> energy
+          Lawncare meets <span className="text-green-400">green</span> energy
         </p>
-        
+
         <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-          We're not your typical lawn care company. We're the <span className="text-purple-400 font-semibold">rebels</span> of the industry—
-          all-electric, eco-conscious, and here to make your lawn look killer without killing the planet.
+          We're not your typical lawn care company. We're using electric equipment to make your lawn look killer without killing the planet.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button 
+          <button
             onClick={() => scrollToSection('quote')}
             className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white text-lg rounded-sm transition-all hover:shadow-2xl hover:shadow-purple-500/50 hover:scale-105"
           >
             Get Your Quote
           </button>
-          <button 
+          <button
             onClick={() => scrollToSection('about')}
             className="px-8 py-4 bg-transparent border-2 border-green-500 text-green-400 hover:bg-green-500/10 text-lg rounded-sm transition-all hover:shadow-xl hover:shadow-green-500/30"
           >
@@ -69,18 +68,14 @@ export function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8">
-          <div className="bg-black/50 border border-purple-900/50 p-6 rounded-sm backdrop-blur-sm">
+        <div className="mt-20 flex flex-col sm:flex-row justify-center gap-8">
+          <div className="bg-black/50 border border-purple-900/50 p-6 rounded-sm backdrop-blur-sm w-full sm:w-64">
             <div className="text-3xl font-black text-purple-400 mb-2">100%</div>
             <div className="text-gray-400">Electric Equipment</div>
           </div>
-          <div className="bg-black/50 border border-purple-900/50 p-6 rounded-sm backdrop-blur-sm">
+          <div className="bg-black/50 border border-purple-900/50 p-6 rounded-sm backdrop-blur-sm w-full sm:w-64">
             <div className="text-3xl font-black text-green-400 mb-2">0</div>
             <div className="text-gray-400">Carbon Emissions</div>
-          </div>
-          <div className="bg-black/50 border border-purple-900/50 p-6 rounded-sm backdrop-blur-sm">
-            <div className="text-3xl font-black text-purple-400 mb-2">∞</div>
-            <div className="text-gray-400">Style Points</div>
           </div>
         </div>
       </div>
