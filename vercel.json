@@ -2,6 +2,8 @@
   "rewrites": [
     { "source": "/legal", "destination": "/" },
     { "source": "/legal/", "destination": "/" },
+    { "source": "/pay", "destination": "/" },
+    { "source": "/pay/", "destination": "/" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }

@@ -6,12 +6,17 @@ import { QuoteForm } from '../components/QuoteForm'
 import { PaymentPortal } from '../components/PaymentPortal'
 import { Footer } from '../components/Footer'
 import { Legal } from './Legal'
+import { Pay } from './Pay'
 
 export default function App() {
   const path = window.location.pathname
 
-  if (path === '/legal') {
+  if (path === '/legal' || path === '/legal/') {
     return <Legal />
+  }
+
+  if (path === '/pay' || path === '/pay/') {
+    return <Pay />
   }
 
   return (

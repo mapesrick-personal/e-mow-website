@@ -44,12 +44,12 @@ export function Header() {
             >
               Get Quote
             </button>
-            <button 
-              onClick={() => scrollToSection('payment')} 
-              className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-sm transition-all hover:shadow-lg hover:shadow-green-500/50"
-            >
-              Pay Now
-            </button>
+            <button
+  onClick={() => (window.location.href = '/pay')}
+  className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-sm transition-all hover:shadow-lg hover:shadow-green-500/50"
+>
+  Pay Now
+</button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -77,12 +77,12 @@ export function Header() {
             >
               Get Quote
             </button>
-            <button 
-              onClick={() => scrollToSection('payment')} 
-              className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-sm transition-colors"
-            >
-              Pay Now
-            </button>
+            <button
+  onClick={() => (window.location.href = '/pay')}
+  className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-sm transition-colors"
+>
+  Pay Now
+</button>
           </nav>
         )}
       </div>
