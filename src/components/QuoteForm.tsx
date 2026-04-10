@@ -129,7 +129,7 @@ const [formData, setFormData] = useState({
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
-                placeholder="(555) 123-4567"
+                placeholder="(515) 366-5296"
               />
             </div>
 
@@ -169,7 +169,7 @@ const [formData, setFormData] = useState({
               onChange={handleChange}
               required
               className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
-              placeholder="123 Dark Lane, Gothville, ST 12345"
+              placeholder="Ankeny, IA 50023"
             />
           </div>
 

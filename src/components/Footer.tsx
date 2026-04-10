@@ -87,8 +87,8 @@ export function Footer() {
               <li className="flex items-start gap-3 text-gray-400">
                 <Phone className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div>(555) EMO-LAWN</div>
-                  <div>(555) 366-5296</div>
+                  <div>(515) EMO-LAWN</div>
+                  <div>(515) 366-5296</div>
                 </div>
               </li>
               <li className="flex items-start gap-3 text-gray-400">
@@ -99,7 +99,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 text-gray-400">
                 <MapPin className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                <div>Serving the Greater Gothville Area</div>
+                <div>Serving the Greater Des Moines/Ankeny Area</div>
               </li>
             </ul>
           </div>
