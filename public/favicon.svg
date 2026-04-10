@@ -1,1 +1,7 @@
-data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%23000000%22%3E%3C%2Frect%3E%0A%20%20%3Cpath%20d%3D%22M36%204L14%2034h14l-4%2026%2026-34H36l0-22z%22%20fill%3D%22%23a855f7%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#000000"/>
+  <path
+    d="M36 4L14 34h14l-4 26 26-34H36V4z"
+    fill="#a855f7"
+  />
+</svg>
