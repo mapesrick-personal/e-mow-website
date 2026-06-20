@@ -1,19 +1,18 @@
 import { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
+import { TextQuoteLink } from './TextQuoteLink';
 
 export function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
-const [formData, setFormData] = useState({
-  name: '',
-  email: '',
-  phone: '',
-  address: '',
-  service: 'mowing',
-  frequency: 'weekly',
-  lawnSize: '',
-  message: '',
-  smsConsent: false
-});
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    address: '',
+    lotSize: '',
+    serviceInterest: '',
+    message: '',
+    smsConsent: false,
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,12 +31,10 @@ const [formData, setFormData] = useState({
       setSubmitted(true);
       setFormData({
         name: '',
-        email: '',
         phone: '',
         address: '',
-        service: 'mowing',
-        frequency: 'weekly',
-        lawnSize: '',
+        lotSize: '',
+        serviceInterest: '',
         message: '',
         smsConsent: false,
       });
@@ -50,33 +47,35 @@ const [formData, setFormData] = useState({
   };
 
   const handleChange = (
-  e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-) => {
-  const { name, value, type } = e.target as HTMLInputElement;
-
-  setFormData({
-    ...formData,
-    [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
-  });
-};
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value, type } = e.target as HTMLInputElement;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
+    });
+  };
 
   return (
-    <section id="quote" className="relative py-24 bg-gradient-to-b from-black via-zinc-950 to-black">
+    <section id="quote-form" className="relative py-24 bg-gradient-to-b from-black via-zinc-950 to-black">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Get Your <span className="text-purple-500">Quote</span>
+            Get a <span className="text-purple-500">free quote</span>
           </h2>
-          <p className="text-xl text-gray-400">
-            Tell us what you need, and we'll hook you up with a custom quote
+          <p className="text-xl text-gray-400 mb-6">
+            Text us your address, or use the form below. We'll send back a price the same day.
           </p>
+          <TextQuoteLink className="inline-block px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-sm transition-colors text-lg">
+            Text (515) 720-6948
+          </TextQuoteLink>
         </div>
 
         {submitted && (
           <div className="mb-8 bg-green-950/50 border border-green-500/50 p-6 rounded-sm flex items-center gap-3">
             <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
             <p className="text-green-400">
-              Thanks! We'll get back to you within 24 hours with your custom quote.
+              Thanks! We'll text or email back the same day.
             </p>
           </div>
         )}
@@ -100,24 +99,6 @@ const [formData, setFormData] = useState({
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-gray-300 mb-2 font-semibold">
-                Email *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
-                placeholder="your@email.com"
-              />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div>
               <label htmlFor="phone" className="block text-gray-300 mb-2 font-semibold">
                 Phone *
               </label>
@@ -129,37 +110,14 @@ const [formData, setFormData] = useState({
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
-                placeholder="(515) 366-5296"
+                placeholder="(515) 555-1234"
               />
             </div>
-
-<div>
-  <label htmlFor="lawnSize" className="block text-gray-300 mb-2 font-semibold">
-    Lawn Size (acres)
-  </label>
-  <select
-    id="lawnSize"
-    name="lawnSize"
-    value={formData.lawnSize}
-    onChange={handleChange}
-    className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
-  >
-    <option value="">Select lawn size</option>
-    <option value="Less than 1/4 acre">Less than 1/4 acre</option>
-    <option value="1/4 acre">1/4 acre</option>
-    <option value="1/3 acre">1/3 acre</option>
-    <option value="1/2 acre">1/2 acre</option>
-    <option value="2/3 acre">2/3 acre</option>
-    <option value="3/4 acre">3/4 acre</option>
-    <option value="1 acre">1 acre</option>
-    <option value="More than 1 acre (note in comments)">More than 1 acre (note in comments)</option>
-  </select>
-</div>
           </div>
 
           <div className="mb-6">
             <label htmlFor="address" className="block text-gray-300 mb-2 font-semibold">
-              Service Address *
+              Property Address *
             </label>
             <input
               type="text"
@@ -169,89 +127,96 @@ const [formData, setFormData] = useState({
               onChange={handleChange}
               required
               className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
-              placeholder="Ankeny, IA 50023"
+              placeholder="123 Main St, Ankeny, IA 50023"
             />
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label htmlFor="service" className="block text-gray-300 mb-2 font-semibold">
-                Primary Service *
+              <label htmlFor="lotSize" className="block text-gray-300 mb-2 font-semibold">
+                Approximate Lot Size *
               </label>
               <select
-                id="service"
-                name="service"
-                value={formData.service}
+                id="lotSize"
+                name="lotSize"
+                value={formData.lotSize}
                 onChange={handleChange}
+                required
                 className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
               >
-                <option value="mowing">Lawnmowing only</option>
-                <option value="mowing-trimming">Lawnmowing and trimming</option>
-                <option value="other">Other (please add details below)</option>
+                <option value="">Select lot size</option>
+                <option value="under-quarter">Under 1/4 acre</option>
+                <option value="quarter-to-half">1/4 to 1/2 acre</option>
+                <option value="half-to-threequarter">1/2 to 3/4 acre</option>
+                <option value="over-threequarter">Over 3/4 acre</option>
               </select>
             </div>
 
             <div>
-              <label htmlFor="frequency" className="block text-gray-300 mb-2 font-semibold">
-                Frequency
+              <label htmlFor="serviceInterest" className="block text-gray-300 mb-2 font-semibold">
+                Service Interest
               </label>
               <select
-                id="frequency"
-                name="frequency"
-                value={formData.frequency}
+                id="serviceInterest"
+                name="serviceInterest"
+                value={formData.serviceInterest}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
               >
-                <option value="weekly">Weekly</option>
-                <option value="biweekly">Bi-weekly</option>
-                <option value="monthly">Monthly</option>
-                <option value="onetime">One-time Service</option>
+                <option value="">Select one</option>
+                <option value="one-time">One-time mow</option>
+                <option value="recurring">Recurring mowing</option>
+                <option value="seasonal">Seasonal cleanup</option>
+                <option value="not-sure">Not sure</option>
               </select>
             </div>
           </div>
 
           <div className="mb-6">
             <label htmlFor="message" className="block text-gray-300 mb-2 font-semibold">
-              Additional Details
+              Anything else?
             </label>
             <textarea
               id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
-              rows={4}
+              rows={3}
               className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors resize-none"
-              placeholder="Any specific requirements or questions?"
+              placeholder="Any specific requests or questions?"
             />
           </div>
-<div className="mb-6">
-  <label className="flex items-start gap-3 text-gray-300">
-    <input
-      type="checkbox"
-      name="smsConsent"
-      checked={formData.smsConsent}
-      onChange={handleChange}
-      required
-      className="mt-1 h-4 w-4 accent-purple-600"
-    />
-    <span className="text-sm leading-relaxed">
-      I agree to receive SMS messages from E-Mow Lawncare related to my quote request.
-      Message frequency varies. Message and data rates may apply. Reply STOP to opt out.
-      Reply HELP for help. See our{' '}
-      <a href="/legal" className="text-green-400 hover:text-green-300 underline">
-        Privacy Policy and Terms
-      </a>.
-    </span>
-  </label>
-</div>
+
+          <div className="mb-6">
+            <label className="flex items-start gap-3 text-gray-300">
+              <input
+                type="checkbox"
+                name="smsConsent"
+                checked={formData.smsConsent}
+                onChange={handleChange}
+                required
+                className="mt-1 h-4 w-4 accent-purple-600"
+              />
+              <span className="text-sm leading-relaxed">
+                I agree to receive SMS messages from E-Mow Lawncare related to my quote request.
+                Message frequency varies. Message and data rates may apply. Reply STOP to opt out.
+                Reply HELP for help. See our{' '}
+                <a href="/legal" className="text-green-400 hover:text-green-300 underline">
+                  Privacy Policy and Terms
+                </a>.
+              </span>
+            </label>
+          </div>
+
           <button
-          
             type="submit"
-            className="w-full px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold rounded-sm transition-all hover:shadow-xl hover:shadow-purple-500/50 flex items-center justify-center gap-2"
+            className="w-full px-8 py-4 bg-green-600 hover:bg-green-700 text-white text-lg font-semibold rounded-sm transition-all hover:shadow-xl hover:shadow-green-500/40"
           >
-            <Send className="w-5 h-5" />
-            Request Quote
+            Send My Address
           </button>
+          <p className="mt-3 text-sm text-gray-500 text-center">
+            We'll text or email back the same day.
+          </p>
         </form>
       </div>
     </section>

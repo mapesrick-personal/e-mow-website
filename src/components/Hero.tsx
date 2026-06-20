@@ -1,83 +1,52 @@
-import { Zap, Leaf } from 'lucide-react';
-import { EmowCrewCharacters } from './EmowCrewCharacters';
+import { TextQuoteLink } from './TextQuoteLink';
 
 export function Hero() {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1678424059788-e9a272786b9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXJrJTIwbW9vZHklMjBnYXJkZW4lMjBuYXR1cmV8ZW58MXx8fHwxNzcxODY2NTYzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-          alt="Dark garden"
-          className="w-full h-full object-cover opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-purple-900/30 to-black" />
-      </div>
 
-      {/* Lightning Effect */}
+      {/* Ambient glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 right-20 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl" />
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-green-500/10 rounded-full blur-3xl" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24">
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <Zap className="w-16 h-16 text-purple-500 fill-purple-500 animate-pulse" />
-          <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter">
-            E-<span className="text-purple-500">MOW</span>
-          </h1>
-          <Leaf className="w-16 h-16 text-green-500 fill-green-500" />
-        </div>
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-12">
 
-        {/* E-MOW Crew Characters */}
+        {/* Logo Image */}
         <div className="flex justify-center mb-8">
-          <div className="w-64 md:w-80 h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-300">
-            <EmowCrewCharacters />
-          </div>
+          <img
+            src="/images/emow-logo.png"
+            alt="E-MOW Lawncare"
+            className="w-72 md:w-96 h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+          />
         </div>
 
-        <p className="text-xl md:text-3xl text-gray-300 mb-4 font-light italic">
-          Lawncare meets <span className="text-green-400">green</span> energy
+        <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-6">
+          A quieter way to mow.
+        </h1>
+
+        <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+          Local father/son electric mowing in Ankeny, Urbandale, and the small Central Iowa
+          neighborhoods nearby. No contract, no phone call, free quote usually the same day.
         </p>
 
-        <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-          We're not your typical lawn care company. We're using electric equipment to make your lawn look killer without killing the planet.
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+          <TextQuoteLink className="w-full sm:w-auto px-8 py-4 bg-green-600 hover:bg-green-700 text-white text-lg font-semibold rounded-sm transition-all hover:shadow-2xl hover:shadow-green-500/40 hover:scale-105 text-center">
+            Text Your Address
+          </TextQuoteLink>
+          <a
+            href="#quote-form"
+            className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-gray-500 text-gray-300 hover:border-gray-300 hover:text-white text-lg font-semibold rounded-sm transition-all text-center"
+          >
+            Use the Form
+          </a>
+        </div>
+
+        <p className="text-sm text-gray-500">
+          Free quote, no commitment. We'll text you back today.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
-            onClick={() => scrollToSection('quote')}
-            className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white text-lg rounded-sm transition-all hover:shadow-2xl hover:shadow-purple-500/50 hover:scale-105"
-          >
-            Get Your Quote
-          </button>
-          <button
-            onClick={() => scrollToSection('about')}
-            className="px-8 py-4 bg-transparent border-2 border-green-500 text-green-400 hover:bg-green-500/10 text-lg rounded-sm transition-all hover:shadow-xl hover:shadow-green-500/30"
-          >
-            Learn More
-          </button>
-        </div>
-
-        {/* Stats */}
-        <div className="mt-20 flex flex-col sm:flex-row justify-center gap-8">
-          <div className="bg-black/50 border border-purple-900/50 p-6 rounded-sm backdrop-blur-sm w-full sm:w-64">
-            <div className="text-3xl font-black text-purple-400 mb-2">100%</div>
-            <div className="text-gray-400">Electric Equipment</div>
-          </div>
-          <div className="bg-black/50 border border-purple-900/50 p-6 rounded-sm backdrop-blur-sm w-full sm:w-64">
-            <div className="text-3xl font-black text-green-400 mb-2">0</div>
-            <div className="text-gray-400">Carbon Emissions</div>
-          </div>
-        </div>
       </div>
     </section>
   );
