@@ -39,6 +39,11 @@ export function QuoteForm() {
         smsConsent: false,
       });
 
+      // Event snippet for Request quote (1) conversion page
+      window.gtag?.('event', 'conversion', {
+        send_to: 'AW-18227381406/VhkOCI-rkd0cEJ6Jv_ND',
+      });
+
       setTimeout(() => setSubmitted(false), 5000);
     } catch (err) {
       console.error(err);
