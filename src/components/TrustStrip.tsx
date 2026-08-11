@@ -2,7 +2,7 @@ export function TrustStrip() {
   const items = [
     'Local father/son',
     '100% electric equipment',
-    'Free quote in under a minute',
+    'Free quote same day',
     'Pay after the mow',
   ];
 
