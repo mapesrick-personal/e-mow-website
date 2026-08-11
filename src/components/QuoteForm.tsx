@@ -2,6 +2,17 @@ import { useState } from 'react';
 import { CheckCircle } from 'lucide-react';
 import { TextQuoteLink } from './TextQuoteLink';
 
+const SERVICE_INTEREST_OPTIONS = [
+  { value: 'one-time', label: 'One-time mow' },
+  { value: 'recurring', label: 'Recurring mowing' },
+  { value: 'seasonal', label: 'Seasonal cleanup' },
+  { value: 'aeration', label: 'Lawn Aeration' },
+  { value: 'power-washing', label: 'Power Washing' },
+  { value: 'rototilling', label: 'Rototilling' },
+  { value: 'mulch', label: 'Mulch Refresh/Installation' },
+  { value: 'not-sure', label: 'Not sure' },
+];
+
 export function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -9,7 +20,7 @@ export function QuoteForm() {
     phone: '',
     address: '',
     lotSize: '',
-    serviceInterest: '',
+    serviceInterest: [] as string[],
     message: '',
     smsConsent: false,
   });
@@ -34,7 +45,7 @@ export function QuoteForm() {
         phone: '',
         address: '',
         lotSize: '',
-        serviceInterest: '',
+        serviceInterest: [],
         message: '',
         smsConsent: false,
       });
@@ -59,6 +70,15 @@ export function QuoteForm() {
       ...formData,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
     });
+  };
+
+  const toggleServiceInterest = (value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      serviceInterest: prev.serviceInterest.includes(value)
+        ? prev.serviceInterest.filter((v) => v !== value)
+        : [...prev.serviceInterest, value],
+    }));
   };
 
   return (
@@ -136,46 +156,47 @@ export function QuoteForm() {
             />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <label htmlFor="lotSize" className="block text-gray-300 mb-2 font-semibold">
-                Approximate Lot Size *
-              </label>
-              <select
-                id="lotSize"
-                name="lotSize"
-                value={formData.lotSize}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
-              >
-                <option value="">Select lot size</option>
-                <option value="under-quarter">Under 1/4 acre</option>
-                <option value="quarter-to-half">1/4 to 1/2 acre</option>
-                <option value="half-to-threequarter">1/2 to 3/4 acre</option>
-                <option value="over-threequarter">Over 3/4 acre</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="serviceInterest" className="block text-gray-300 mb-2 font-semibold">
-                Service Interest
-              </label>
-              <select
-                id="serviceInterest"
-                name="serviceInterest"
-                value={formData.serviceInterest}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
-              >
-                <option value="">Select one</option>
-                <option value="one-time">One-time mow</option>
-                <option value="recurring">Recurring mowing</option>
-                <option value="seasonal">Seasonal cleanup</option>
-                <option value="not-sure">Not sure</option>
-              </select>
-            </div>
+          <div className="mb-6">
+            <label htmlFor="lotSize" className="block text-gray-300 mb-2 font-semibold">
+              Approximate Lot Size *
+            </label>
+            <select
+              id="lotSize"
+              name="lotSize"
+              value={formData.lotSize}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
+            >
+              <option value="">Select lot size</option>
+              <option value="under-quarter">Under 1/4 acre</option>
+              <option value="quarter-to-half">1/4 to 1/2 acre</option>
+              <option value="half-to-threequarter">1/2 to 3/4 acre</option>
+              <option value="over-threequarter">Over 3/4 acre</option>
+            </select>
           </div>
+
+          <fieldset className="mb-6">
+            <legend className="block text-gray-300 mb-2 font-semibold">
+              Service Interest <span className="text-gray-500 font-normal">(select all that apply)</span>
+            </legend>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {SERVICE_INTEREST_OPTIONS.map((option) => (
+                <label
+                  key={option.value}
+                  className="flex items-center gap-3 px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-sm text-gray-300 cursor-pointer hover:border-purple-500/50 transition-colors"
+                >
+                  <input
+                    type="checkbox"
+                    checked={formData.serviceInterest.includes(option.value)}
+                    onChange={() => toggleServiceInterest(option.value)}
+                    className="h-4 w-4 accent-purple-600"
+                  />
+                  {option.label}
+                </label>
+              ))}
+            </div>
+          </fieldset>
 
           <div className="mb-6">
             <label htmlFor="message" className="block text-gray-300 mb-2 font-semibold">
