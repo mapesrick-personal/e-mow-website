@@ -38,8 +38,8 @@ export function Header() {
             <button onClick={() => scrollToSection('services')} className="text-gray-300 hover:text-purple-400 transition-colors">
               Services
             </button>
-            <button 
-              onClick={() => scrollToSection('quote')} 
+            <button
+              onClick={() => scrollToSection('quote-form')}
               className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-sm transition-all hover:shadow-lg hover:shadow-purple-500/50"
             >
               Get Quote
@@ -71,8 +71,8 @@ export function Header() {
             <button onClick={() => scrollToSection('services')} className="text-gray-300 hover:text-purple-400 transition-colors text-left">
               Services
             </button>
-            <button 
-              onClick={() => scrollToSection('quote')} 
+            <button
+              onClick={() => scrollToSection('quote-form')}
               className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-sm transition-colors"
             >
               Get Quote
