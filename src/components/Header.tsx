@@ -1,5 +1,6 @@
 import { Menu, Snowflake, X, Zap } from 'lucide-react';
 import { useState } from 'react';
+import { trackEvent } from '../lib/analytics';
 
 export function Header({ variant = 'mow' }: { variant?: 'mow' | 'snow' }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +15,16 @@ export function Header({ variant = 'mow' }: { variant?: 'mow' | 'snow' }) {
       return;
     }
     window.location.href = `/#${id}`;
+  };
+
+  const onGetQuote = () => {
+    trackEvent('click_get_quote', { variant });
+    scrollToSection('quote-form');
+  };
+
+  const onPayNow = () => {
+    trackEvent('click_pay_now', { variant });
+    window.location.href = '/pay';
   };
 
   const quoteButtonClasses = isSnow
@@ -68,13 +79,13 @@ export function Header({ variant = 'mow' }: { variant?: 'mow' | 'snow' }) {
               Services
             </button>
             <button
-              onClick={() => scrollToSection('quote-form')}
+              onClick={onGetQuote}
               className={`px-6 py-2 text-white rounded-sm transition-all hover:shadow-lg ${quoteButtonClasses}`}
             >
               Get Quote
             </button>
             <button
-  onClick={() => (window.location.href = '/pay')}
+  onClick={onPayNow}
   className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-sm transition-all hover:shadow-lg hover:shadow-green-500/50"
 >
   Pay Now
@@ -101,13 +112,13 @@ export function Header({ variant = 'mow' }: { variant?: 'mow' | 'snow' }) {
               Services
             </button>
             <button
-              onClick={() => scrollToSection('quote-form')}
+              onClick={onGetQuote}
               className={`px-6 py-2 text-white rounded-sm transition-colors ${quoteButtonClasses}`}
             >
               Get Quote
             </button>
             <button
-  onClick={() => (window.location.href = '/pay')}
+  onClick={onPayNow}
   className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-sm transition-colors"
 >
   Pay Now

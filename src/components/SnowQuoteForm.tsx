@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CheckCircle } from 'lucide-react';
 import { TextQuoteLink } from './TextQuoteLink';
+import { trackEvent } from '../lib/analytics';
 
 // Tagged so snow leads are obvious in the quote email and the Twilio SMS,
 // both of which already interpolate `service`.
@@ -44,6 +45,8 @@ export function SnowQuoteForm() {
         send_to: 'AW-18227381406/VhkOCI-rkd0cEJ6Jv_ND',
       });
 
+      trackEvent('submit_snow_form');
+
       setTimeout(() => setSubmitted(false), 5000);
     } catch (err) {
       console.error(err);
@@ -71,7 +74,7 @@ export function SnowQuoteForm() {
           <p className="text-xl text-gray-400 mb-6">
             Text us your address, or use the form below. We'll send back a price the same day.
           </p>
-          <TextQuoteLink className="inline-block px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-sm transition-colors text-lg">
+          <TextQuoteLink placement="snow_quote_form" className="inline-block px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-sm transition-colors text-lg">
             Text (515) 720-6948
           </TextQuoteLink>
         </div>
