@@ -35,15 +35,13 @@ export function About() {
                 Who we <span className="text-purple-400">are</span>
               </h2>
               <p className="text-lg text-gray-300 leading-relaxed">
-                We're a small local crew, Rick and his son, running an{' '}
+                We're a small, father/son team, running an{' '}
                 <span className="text-green-400 font-semibold">electric-only mowing service</span>{' '}
                 in Central Iowa. We started Emow because we wanted lawncare that was easier to
-                schedule, quieter to listen to, and a little more fun to deal with.
+                schedule, quieter to listen to, and better for the environment.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed">
-                Don't worry, we won't mow your lawn in floor-length trench coats. We're starting
-                small and staying small. If you have a few neighbors interested, ask about a route
-                discount.
+                If you have a few neighbors interested, ask about a route and referral discounts.
               </p>
 
               <div className="flex justify-start pt-2">
