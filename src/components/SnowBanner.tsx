@@ -5,9 +5,6 @@ import { ArrowRight, Snowflake, X } from 'lucide-react';
 // Anchored to a fixed UTC instant so it expires at the same moment for every visitor.
 const SNOW_BANNER_END = Date.UTC(2027, 2, 1, 6, 0, 0);
 
-// Season-versioned so a future '27/'28 banner isn't suppressed for returning visitors.
-const DISMISS_KEY = 'esnow-banner-dismissed-2627';
-
 // Static so the dots don't reshuffle on every render.
 const SNOW_DOTS = [
   { left: '6%', delay: '0s', duration: '3.4s' },
@@ -20,16 +17,9 @@ const SNOW_DOTS = [
   { left: '91%', delay: '2.1s', duration: '4.3s' },
 ];
 
-function isDismissed() {
-  try {
-    return localStorage.getItem(DISMISS_KEY) === '1';
-  } catch {
-    return false;
-  }
-}
-
 export function SnowBanner() {
-  const [visible, setVisible] = useState(() => Date.now() < SNOW_BANNER_END && !isDismissed());
+  // Dismissal is in-memory only, so the banner comes back on the next page load.
+  const [visible, setVisible] = useState(() => Date.now() < SNOW_BANNER_END);
   const ref = useRef<HTMLDivElement | null>(null);
 
   // Publish the banner's real height so the fixed header and the hero can offset themselves.
@@ -56,15 +46,6 @@ export function SnowBanner() {
       root.style.setProperty('--banner-h', '0px');
     };
   }, [visible]);
-
-  const dismiss = () => {
-    setVisible(false);
-    try {
-      localStorage.setItem(DISMISS_KEY, '1');
-    } catch {
-      // Safari private mode. Banner still closes for this session.
-    }
-  };
 
   if (!visible) return null;
 
@@ -109,7 +90,7 @@ export function SnowBanner() {
 
         <button
           type="button"
-          onClick={dismiss}
+          onClick={() => setVisible(false)}
           aria-label="Dismiss snow removal announcement"
           className="shrink-0 p-1 text-slate-400 hover:text-slate-800 transition-colors"
         >
