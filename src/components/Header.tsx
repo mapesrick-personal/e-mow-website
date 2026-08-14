@@ -1,33 +1,62 @@
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, Snowflake, X, Zap } from 'lucide-react';
 import { useState } from 'react';
 
-export function Header() {
+export function Header({ variant = 'mow' }: { variant?: 'mow' | 'snow' }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isSnow = variant === 'snow';
 
+  // Falls back to navigating home when the section isn't on this page (e.g. About on /esnow).
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
+      return;
     }
+    window.location.href = `/#${id}`;
   };
 
+  const quoteButtonClasses = isSnow
+    ? 'bg-blue-600 hover:bg-blue-700 hover:shadow-blue-500/50'
+    : 'bg-purple-600 hover:bg-purple-700 hover:shadow-purple-500/50';
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-purple-900/50">
+    <header
+      style={{ top: 'var(--banner-h, 0px)' }}
+      className={`fixed left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b ${
+        isSnow ? 'border-blue-900/50' : 'border-purple-900/50'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <button 
-            onClick={() => scrollToSection('hero')}
+          <button
+            onClick={() => (isSnow ? (window.location.href = '/') : scrollToSection('hero'))}
             className="flex items-center gap-2 group cursor-pointer"
           >
             <div className="relative">
-              <Zap className="w-8 h-8 text-purple-500 fill-purple-500 group-hover:text-green-400 group-hover:fill-green-400 transition-colors" />
-              <div className="absolute inset-0 blur-lg bg-purple-500/30 group-hover:bg-green-400/30 transition-colors" />
+              {isSnow ? (
+                <Snowflake className="w-8 h-8 text-blue-400 group-hover:text-sky-300 transition-colors" />
+              ) : (
+                <Zap className="w-8 h-8 text-purple-500 fill-purple-500 group-hover:text-green-400 group-hover:fill-green-400 transition-colors" />
+              )}
+              <div
+                className={`absolute inset-0 blur-lg transition-colors ${
+                  isSnow
+                    ? 'bg-blue-500/30 group-hover:bg-sky-300/30'
+                    : 'bg-purple-500/30 group-hover:bg-green-400/30'
+                }`}
+              />
             </div>
-            <span className="text-2xl font-black text-white tracking-tight">
-              E-<span className="text-purple-500 group-hover:text-green-400 transition-colors">MOW</span>
-            </span>
+            {isSnow ? (
+              <span className="text-2xl font-black text-white tracking-tight">
+                <span className="text-blue-400 group-hover:text-sky-300 transition-colors">E-</span>SNOW
+              </span>
+            ) : (
+              <span className="text-2xl font-black text-white tracking-tight">
+                E-<span className="text-purple-500 group-hover:text-green-400 transition-colors">MOW</span>
+              </span>
+            )}
           </button>
 
           {/* Desktop Navigation */}
@@ -40,7 +69,7 @@ export function Header() {
             </button>
             <button
               onClick={() => scrollToSection('quote-form')}
-              className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-sm transition-all hover:shadow-lg hover:shadow-purple-500/50"
+              className={`px-6 py-2 text-white rounded-sm transition-all hover:shadow-lg ${quoteButtonClasses}`}
             >
               Get Quote
             </button>
@@ -73,7 +102,7 @@ export function Header() {
             </button>
             <button
               onClick={() => scrollToSection('quote-form')}
-              className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-sm transition-colors"
+              className={`px-6 py-2 text-white rounded-sm transition-colors ${quoteButtonClasses}`}
             >
               Get Quote
             </button>
