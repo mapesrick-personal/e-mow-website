@@ -2,6 +2,7 @@
 
 :root {
   --font-size: 16px;
+  --banner-h: 0px;
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
@@ -178,5 +179,19 @@
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
+  }
+}
+
+@keyframes esnow-fall {
+  0% {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(56px);
+    opacity: 0;
   }
 }

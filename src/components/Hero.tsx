@@ -11,7 +11,10 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-12">
+      <div
+        style={{ paddingTop: 'calc(6rem + var(--banner-h, 0px))' }}
+        className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-12"
+      >
 
         {/* Logo Image */}
         <div className="flex justify-center mb-8">

@@ -4,6 +4,8 @@
     { "source": "/legal/", "destination": "/" },
     { "source": "/pay", "destination": "/" },
     { "source": "/pay/", "destination": "/" },
+    { "source": "/esnow", "destination": "/" },
+    { "source": "/esnow/", "destination": "/" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }

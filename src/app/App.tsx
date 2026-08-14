@@ -10,8 +10,10 @@ import { QuoteForm } from '../components/QuoteForm'
 import { PaymentPortal } from '../components/PaymentPortal'
 import { Footer } from '../components/Footer'
 import { MobileStickyBar } from '../components/MobileStickyBar'
+import { SnowBanner } from '../components/SnowBanner'
 import { Legal } from './Legal'
 import { Pay } from './Pay'
+import { Snow } from './Snow'
 
 export default function App() {
   const path = window.location.pathname
@@ -24,8 +26,13 @@ export default function App() {
     return <Pay />
   }
 
+  if (path === '/esnow' || path === '/esnow/') {
+    return <Snow />
+  }
+
   return (
     <div className="pb-20 md:pb-0">
+      <SnowBanner />
       <Header />
       <Hero />
       <TrustStrip />
