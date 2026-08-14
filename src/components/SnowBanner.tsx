@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { ArrowRight, Snowflake, X } from 'lucide-react';
+import { trackEvent } from '../lib/analytics';
 
 // Mar 1 2027 00:00 America/Chicago (UTC-6), so the banner runs through end of Feb 28 2027.
 // Anchored to a fixed UTC instant so it expires at the same moment for every visitor.
@@ -82,6 +83,7 @@ export function SnowBanner() {
 
         <a
           href="/esnow"
+          onClick={() => trackEvent('click_snow_banner')}
           aria-label="Sign up for snow removal"
           className="shrink-0 px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded-sm transition-colors"
         >
@@ -90,7 +92,10 @@ export function SnowBanner() {
 
         <button
           type="button"
-          onClick={() => setVisible(false)}
+          onClick={() => {
+            trackEvent('dismiss_snow_banner');
+            setVisible(false);
+          }}
           aria-label="Dismiss snow removal announcement"
           className="shrink-0 p-1 text-slate-400 hover:text-slate-800 transition-colors"
         >

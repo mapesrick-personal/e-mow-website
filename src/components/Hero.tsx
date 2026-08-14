@@ -1,4 +1,5 @@
 import { TextQuoteLink } from './TextQuoteLink';
+import { trackEvent } from '../lib/analytics';
 
 export function Hero() {
   return (
@@ -35,11 +36,12 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-          <TextQuoteLink className="w-full sm:w-auto px-8 py-4 bg-green-600 hover:bg-green-700 text-white text-lg font-semibold rounded-sm transition-all hover:shadow-2xl hover:shadow-green-500/40 hover:scale-105 text-center">
+          <TextQuoteLink placement="hero" className="w-full sm:w-auto px-8 py-4 bg-green-600 hover:bg-green-700 text-white text-lg font-semibold rounded-sm transition-all hover:shadow-2xl hover:shadow-green-500/40 hover:scale-105 text-center">
             Text Your Address
           </TextQuoteLink>
           <a
             href="#quote-form"
+            onClick={() => trackEvent('click_use_form', { placement: 'hero' })}
             className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-gray-500 text-gray-300 hover:border-gray-300 hover:text-white text-lg font-semibold rounded-sm transition-all text-center"
           >
             Use the Form

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CheckCircle } from 'lucide-react';
 import { TextQuoteLink } from './TextQuoteLink';
+import { trackEvent } from '../lib/analytics';
 
 const SERVICE_INTEREST_OPTIONS = [
   { value: 'one-time', label: 'One-time mow' },
@@ -55,6 +56,8 @@ export function QuoteForm() {
         send_to: 'AW-18227381406/VhkOCI-rkd0cEJ6Jv_ND',
       });
 
+      trackEvent('submit_quote_form');
+
       setTimeout(() => setSubmitted(false), 5000);
     } catch (err) {
       console.error(err);
@@ -91,7 +94,7 @@ export function QuoteForm() {
           <p className="text-xl text-gray-400 mb-6">
             Text us your address, or use the form below. We'll send back a price the same day.
           </p>
-          <TextQuoteLink className="inline-block px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-sm transition-colors text-lg">
+          <TextQuoteLink placement="quote_form" className="inline-block px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-sm transition-colors text-lg">
             Text (515) 720-6948
           </TextQuoteLink>
         </div>
